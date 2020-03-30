@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="ibas_cus_account_move_form" model="ir.ui.view">
+            <field name="name">ibas_cus_account_move_form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="tin"/>
+                    <field name="business_name"/>
+                    <field name="prepared_by"/>
+                    <field name="approved_by"/>
+                    <field name="received_by"/>
+                </xpath>
+
+             </field>
+         </record>
+    </data>
+</odoo>

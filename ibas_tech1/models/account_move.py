@@ -23,12 +23,20 @@ _logger = logging.getLogger(__name__)
 class IBASMoveInvoice(models.Model):
     _inherit = 'account.move'
 
-    name = fields.Char(string='Number', required=True, readonly=False, copy=False, default='/')
+    name = fields.Char(string='Number', required=True,
+                       readonly=False, copy=False, default='/')
+
+    tin = fields.Char('Tin')
+    business_name = fields.Char('Business Name/Style')
+    prepared_by = fields.Char('Prepared By:')
+    approved_by = fields.Char('Approved By:')
+    received_by = fields.Char('Received By:')
+
 
 class IBASAccountLine(models.Model):
     _inherit = 'account.move.line'
     discount_incurrency = fields.Float(string='Discount Amount')
-    
+
     @api.model
     def _get_price_total_and_subtotal_model(self, price_unit, quantity, discount, currency, product, partner, taxes, move_type):
         ''' This method is used to compute 'price_total' & 'price_subtotal'.
@@ -53,11 +61,9 @@ class IBASAccountLine(models.Model):
         # Compute 'price_total'.
         if taxes:
             taxes_res = taxes._origin.compute_all(price_unit_wo_discount,
-                quantity=quantity, currency=currency, product=product, partner=partner, is_refund=move_type in ('out_refund', 'in_refund'))
+                                                  quantity=quantity, currency=currency, product=product, partner=partner, is_refund=move_type in ('out_refund', 'in_refund'))
             res['price_subtotal'] = taxes_res['total_excluded']
             res['price_total'] = taxes_res['total_included']
         else:
             res['price_total'] = res['price_subtotal'] = subtotal
         return res
-    
-            

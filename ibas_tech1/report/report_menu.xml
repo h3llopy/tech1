@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+    
+        <report
+        id="action_report_statement_of_account"
+        model="account.move"
+        string="Statement of Account"
+        report_type="qweb-pdf"
+        name="ibas_tech1.print_statement_of_account"
+        file="ibas_tech1.print_statement_of_account"
+        />
+
+        <report
+        id="action_report_sales_invoice"
+        model="account.move"
+        string="Sales Invoice"
+        report_type="qweb-pdf"
+        name="ibas_tech1.print_sales_invoice"
+        file="ibas_tech1.print_sales_invoice"
+        />
+
+
+
+        <!-- Report Paper Formats -->
+        <record id="paperformat_statement_of_account" model="report.paperformat">
+            <field name="name">Statement of Account</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">165</field>
+            <field name="page_width">140</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="paperformat_sales_invoice" model="report.paperformat">
+            <field name="name">Sales Invoice</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">165</field>
+            <field name="page_width">140</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">32</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <!-- Apply Paper Formats -->
+        <record id="ibas_tech1.action_report_statement_of_account" model="ir.actions.report">
+            <field name="paperformat_id" ref="ibas_tech1.paperformat_statement_of_account" />
+        </record> 
+
+         <record id="ibas_tech1.action_report_sales_invoice" model="ir.actions.report">
+            <field name="paperformat_id" ref="ibas_tech1.paperformat_sales_invoice" />
+        </record> 
+
+    </data>
+</odoo>
