@@ -44,5 +44,18 @@
             <field name="domain_force">[('supplier_rank','>', 0)]</field>    
             <field name="groups" eval="[(4,ref('group_ibas_tech1_suppliers_only'))]"/>
         </record>
+
+        <record id="partner_salesperson" model="ir.rule">
+            <field name="name">Contact Salesperson</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="groups" eval="[(4, ref('group_ibas_tech1_salesperson'))]"/>
+            <field name="domain_force">
+                ['|','&amp;', ('type', '!=', 'private'), ('type', '=', False), ('user_id','=',user.id)]
+            </field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
     </data>
 </odoo>
