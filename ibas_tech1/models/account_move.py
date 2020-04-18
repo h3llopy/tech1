@@ -28,9 +28,10 @@ class IBASMoveInvoice(models.Model):
 
     tin = fields.Char('Tin')
     business_name = fields.Char('Business Name/Style')
-    prepared_by = fields.Char('Prepared By:')
-    approved_by = fields.Char('Approved By:')
-    received_by = fields.Char('Received By:')
+    prepared_by = fields.Char('Prepared By', default='CMC')
+    reviewed_by = fields.Char('Reviewed By', default='JRS')
+    approved_by = fields.Char('Approved By', default='JEM')
+    received_by = fields.Char('Received By')
     
     # BILLS
     apv_no = fields.Char(string='APV No.')
@@ -38,10 +39,6 @@ class IBASMoveInvoice(models.Model):
     # JOURNAL ENTRY
     jv_no = fields.Char(string='JV No.')
     remarks = fields.Text()
-    prepared_by = fields.Char(default='CMC')
-    reviewed_by = fields.Char(default='JRS')
-    approved_by = fields.Char(default='JEM')
-
 
 class IBASAccountLine(models.Model):
     _inherit = 'account.move.line'
