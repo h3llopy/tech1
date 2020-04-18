@@ -18,8 +18,26 @@
         name="ibas_tech1.print_sales_invoice"
         file="ibas_tech1.print_sales_invoice"
         />
-
-
+        
+        <!-- APV -->
+        <report 
+            id="account_payable_voucher"
+            model="account.move"
+            string="Account Payable Voucher"
+            report_type="qweb-pdf"
+            name="ibas_tech1.report_account_payable_voucher"
+            file="ibas_tech1.report_account_payable_voucher"
+        />
+        
+        <!-- JV -->
+        <report 
+            id="account_journal_voucher"
+            model="account.move"
+            string="Journal Voucher"
+            report_type="qweb-pdf"
+            name="ibas_tech1.report_account_journal_voucher"
+            file="ibas_tech1.report_account_journal_voucher"
+        />
 
         <!-- Report Paper Formats -->
         <record id="paperformat_statement_of_account" model="report.paperformat">

@@ -113,8 +113,10 @@
             <t t-set="o" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
                 <div class="page">
                     <div class="row">
-                        <div class="row" style="border: 1px solid black; font-size:20px;">
-                            <center><strong><span>CHECK VOUCHER</span></strong></center>
+                        <div class="col-12">
+                            <div style="border: 1px solid black; font-size:20px;">
+                                <center><strong><span>CHECK VOUCHER</span></strong></center>
+                            </div>
                         </div>
                     </div>
                     <br/>
@@ -126,8 +128,8 @@
                             Payment Method: <br/>
                         </div>
                        <div class="col-3">
-                           <span t-field="doc.cv_no"/><br/>
-                           <span t-field="doc.check_no"/> <br/>
+                           <span t-field="doc.partner_id.name"/><br/>
+                           <span t-field="doc.payment_date"/> <br/>
                            Cheque <br/>
                         </div>
                        <div class="col-3">
@@ -191,47 +193,31 @@
                     <br/>
                     
                     <div class="row">
-                        <div class="row" style="border: 1px solid black; padding: 0.5em; height:100px;">
-                            <h5>REMARKS:</h5><br/>
-                            <span t-field="doc.remarks"/>
+                        <div class="col-12">
+                            <div style="border: 1px solid black; padding: 0.5em; height:100px;">
+                                <h5>REMARKS:</h5><br/>
+                                <span t-field="doc.remarks"/>
+                            </div>
                         </div>
                     </div>
 
                     <br/><br/>
 
-                    <!-- <div class="row">
-                        <div class="col-6">
-                            <br/>
-                            <br/>
-                        </div>
-                        <div class="col-3">
-                            TOTAL: <br/>
-                            TOTAL DUE: <br/>
-                        </div>
-                        <div class="col-3">
-                            <span t-field="doc.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            <br/>
-                            <br/>
-                        </div>
-                    </div>
-
-                    <br/><br/><br/><br/> -->
-
                     <div class="row">
                         <div class="col-3">
                             <p><strong>Prepared by:</strong></p>
                             <span>____________________________</span><br/>
-                            <center><span>CMC</span></center>
+                            <center><span t-field="doc.prepared_by"/></center>
                         </div>
                         <div class="col-3">
                             <p><strong>Reviewed by:</strong></p>
                             <span>____________________________</span><br/>
-                            <center><span>JRS</span></center>
+                            <center><span t-field="doc.review_by"/></center>
                         </div>
                         <div class="col-3">
                             <p><strong>Approved by:</strong></p>
                             <span>____________________________</span><br/>
-                            <center><span>JEM/LDM</span></center>
+                            <center><span t-field="doc.approved_by"/></center>
                         </div>
                         <div class="col-3">
                             <p><strong>Received by:</strong></p>

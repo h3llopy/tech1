@@ -39,7 +39,7 @@ class IBASMoveInvoice(models.Model):
     jv_no = fields.Char(string='JV No.')
     remarks = fields.Text()
     prepared_by = fields.Char(default='CMC')
-    review_by = fields.Char(default='JRS')
+    reviewed_by = fields.Char(default='JRS')
     approved_by = fields.Char(default='JEM')
 
 

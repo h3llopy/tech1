@@ -10,12 +10,15 @@
                     <field name="tin"/>
                     <field name="business_name"/>
                     <field name="prepared_by"/>
+                    <field name="reviewed_by"/>
                     <field name="approved_by"/>
                     <field name="received_by"/>
                 </xpath>
                 
                 <xpath expr="//field[@name='ref']" position="after">
                     <field name="apv_no" attrs="{'invisible': [('type', '!=', 'in_invoice')]}"/>
+                    <field name="jv_no" attrs="{'invisible': [('type', '!=', 'entry')]}"/>
+                    <field name="remarks" attrs="{'invisible': [('type', '!=', 'entry')]}"/>
                 </xpath>
 
              </field>
