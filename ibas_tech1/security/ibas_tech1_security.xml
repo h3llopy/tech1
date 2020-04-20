@@ -52,7 +52,7 @@
             <field name="name">Contact Salesperson</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">
-                ['|','&amp;', ('type', '!=', 'private'), ('type', '=', False), ('user_id','=',user.id)]
+                ['|','&amp;','|', ('type', '!=', 'private'), ('type', '=', False), ('user_id','=',user.id), ('id','=',user.partner_id.id)]
             </field>    
             <field name="groups" eval="[(4,ref('ibas_tech1.group_ibas_tech1_salesperson'))]"/>
             <field name="perm_read" eval="True"/>
@@ -65,7 +65,7 @@
             <field name="name">All Contacts But Supppliers</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">
-                ['|','&amp;', ('type', '!=', 'private'), ('type', '=', False), ('supplier_rank','=', 0)]
+                ['|','&amp;','|', ('type', '!=', 'private'), ('type', '=', False), ('supplier_rank','=', 0), ('id','=',user.partner_id.id)]
             </field>    
             <field name="groups" eval="[(4,ref('ibas_tech1.group_ibas_tech1_all_but_suppliers'))]"/>
             <field name="perm_read" eval="True"/>
@@ -78,7 +78,7 @@
             <field name="name">Supplier Contacts Only</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">
-                ['|','&amp;', ('type', '!=', 'private'), ('type', '=', False), ('supplier_rank','>', 0)]
+                ['|','&amp;', '|', ('type', '!=', 'private'), ('type', '=', False), ('supplier_rank','>', 0), ('id','=',user.partner_id.id)]
             </field>    
             <field name="groups" eval="[(4,ref('ibas_tech1.group_ibas_tech1_suppliers_only'))]"/>
             <field name="perm_read" eval="True"/>
