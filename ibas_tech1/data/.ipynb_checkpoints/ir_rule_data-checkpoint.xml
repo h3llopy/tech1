@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<!-- <odoo>
 	<data noupdate="0">
 
         <delete model="ir.rule" search="[('id','=',ref('base.res_partner_rule_private_employee'))]"/>
 
 	</data>
-</odoo>
+</odoo> -->
