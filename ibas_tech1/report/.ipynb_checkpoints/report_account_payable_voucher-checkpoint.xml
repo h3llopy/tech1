@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_account_payable_voucher_document">
+            <t t-call="ibas_tech1.ibas_external_layout">
+                <t t-set="o" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+                <div class="page">
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="border: 1px solid black; font-size:20px;">
+                                <center><strong><span>ACCOUNTS PAYABLE VOUCHER</span></strong></center>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            Payee: <br/>
+                            Payment Terms: <br/>
+                        </div>
+                        <div class="col-3">
+                            <span t-field="doc.partner_id.name"/><br/>
+                            <span t-field="doc.invoice_payment_term_id.name"/> <br/>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-2">
+                           APV No: <br/>
+                           Acctg Date: <br/>
+                           Due Date: <br/>
+                        </div>
+                        <div class="col-2">
+                           <span t-field="doc.apv_no"/><br/>
+                           <span t-field="doc.date"/><br/>
+                           <span t-field="doc.invoice_date"/><br/>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    
+                    <table border="1" style="height: 400px; width: 100%; border-collapse: collapse; padding: 0.5em;">
+                        <tbody>
+                            <tr style="height: 21px;">
+                                <td style="width: 48%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>ACCOUNT TITLE</strong></td>
+                                <td style="width: 16%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>COST CENTER</strong></td>
+                                <td style="width: 18%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>DEBIT</strong></td>
+                                <td style="width: 18%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>CREDIT</strong></td>
+                            </tr>
+                            <t t-set="debit_total" t-value="0"/>
+                            <t t-set="credit_total" t-value="0"/>
+                            <tr t-foreach="doc.line_ids" t-as="move">
+                                <t t-set="debit_total" t-value="debit_total + move.debit"/>
+                                <t t-set="credit_total" t-value="credit_total + move.credit"/>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <p></p>
+                                    <p><span t-field="move.account_id.name"/><br/></p>
+                                    <p></p>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <span t-field="move.analytic_account_id.name"/>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <span t-field="move.debit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <span t-field="move.credit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 100%;">
+                                </td>
+                                <td style="height: 100%;">
+                                </td>
+                                <td style="height: 100%;">
+                                </td>
+                                <td style="height: 100%;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding: 0.5em;border-top: 1px solid black;">
+                                    <p>TOTAL</p>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;border-top: 1px solid black;">
+                                    <strong><span t-field="doc.currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(debit_total)" />
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;border-top: 1px solid black;">
+                                    <strong><span t-field="doc.currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(credit_total)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <br/>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="border: 1px solid black; padding: 0.5em; height:100px;">
+                                <h6>REMARKS:</h6><br/>
+                                <span t-field="doc.ref"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p><strong>Prepared by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <center><span t-field="doc.prepared_by"/></center>
+                        </div>
+                        <div class="col-3 offset-1">
+                            <p><strong>Reviewed by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <center><span t-field="doc.reviewed_by"/></center>
+                        </div>
+                        <div class="col-3 offset-1">
+                            <p><strong>Approved by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <center><span t-field="doc.approved_by"/></center>
+                        </div>
+                    </div>
+                </div>
+            </t> 
+        </template>
+
+        <template id="report_account_payable_voucher">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="ibas_tech1.report_account_payable_voucher_document" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+      
+
+    </data>
+</odoo>
