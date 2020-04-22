@@ -1,0 +1,28 @@
+
+<odoo>
+
+<data>
+
+    <record id="ibas_po_view_form" model="ir.ui.view">
+        <field name="name">purchase.order.view.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="project_name"/>
+            </xpath>
+
+             <xpath expr="//field[@name='incoterm_id']" position="after">
+                <field name="prepared_by"/>
+                <field name="prepared_by_signature" widget="signature"/>
+                <field name="checked_by"/>
+                <field name="checked_by_signature" widget="signature"/>
+                <field name="approved_by"/>
+                <field name="approved_by_signature" widget="signature"/>
+            </xpath>
+        </field>
+    </record>
+
+</data>
+
+</odoo>

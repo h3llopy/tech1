@@ -1,0 +1,45 @@
+<odoo>
+    <template id="ibas_delivery_slip" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[hasclass('page')]" position="after">
+            <div>
+                <br/>
+                <br/>
+                <br/>
+                <div> 
+                <p style="text-align: right;"></p>
+                <p style="text-align: right;"></p>
+                <p style="text-align: right;">Received By:___________________</p>
+                <p style="text-align: right;">Date:___________________</p>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+            <attribute name="t-call">ibas_tech1.ibas_external_layout_dr</attribute>
+        </xpath>
+
+         <xpath expr="//table[@name='stock_move_table']/thead/tr/th[1]" position="after">
+            <th><strong>Description</strong></th>
+        </xpath>
+
+        <xpath expr="//table[@name='stock_move_table']/tbody/tr/td[1]" position="after">
+             <td>
+            <span t-field="move.desc_note"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//table[@name='stock_move_line_table']/thead/tr/th[2]" position="after">
+            <th><strong>Description</strong></th>
+        </xpath>
+
+        <xpath expr="//table[@name='stock_move_line_table']/tbody/tr/td[3]" position="after">
+             <td>
+            <span t-field="move_line.desc_note"/>
+            </td>
+        </xpath>
+
+        
+
+
+    </template>
+</odoo>

@@ -1,0 +1,20 @@
+<odoo>
+<data>
+     <record id="ibas_view_move_form" model="ir.ui.view">
+            <field name="name">account.move.view.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="name" attrs="{'invisible': [('type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                </xpath>
+
+                <!-- <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="before">
+                    <field name="discount_incurrency"/>
+                    
+                </xpath> -->
+            </field>
+        </record>
+</data>
+</odoo>
