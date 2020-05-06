@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock', 'sale', 'sales_team', 'account', 'web', 'purchase', 'purchase_stock', 'account'],
+    'depends': ['base', 'stock', 'sale', 'sales_team', 'account', 'web', 'purchase', 'purchase_stock', 'account', 'helpdesk'],
 
     # always loaded
     'data': [
@@ -34,6 +34,7 @@
         'views/account_payment.xml',
         'views/stock_picking.xml',
         'views/cus_account_move_views.xml',
+        'views/helpdesk_ticket.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
         'report/report_deliveryslip.xml',

@@ -1,0 +1,25 @@
+
+<odoo>
+    <record id="stock_picking_view_tree_ibas" model="ir.ui.view">
+        <field name="name">stock.move.line.view.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="after">
+                <field name="desc_note"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_picking_view_form" model="ir.ui.view">
+        <field name="name">stock_view_picking_form.view.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
+            <field name="desc_note"/>               
+           </xpath>
+        </field>
+    </record>
+    
+</odoo>

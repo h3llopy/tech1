@@ -1,0 +1,82 @@
+<odoo>
+
+    <data>
+
+        <record id="ibas_sale_order_view_form" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[1]/header[1]/button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace">
+                    <field name="price_unit" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                    <field name="discount_incurrency"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/form/group/group[1]/field[@name='price_unit']" position="replace">
+                    <field name="price_unit" readonly="1"/>
+                    <field name="discount_incurrency"/>
+                </xpath>
+
+            </field>
+        </record>
+
+         <record id="ibas_sale_order_view_form_sales" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_manager')])]"/>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[1]/header[1]/button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+
+                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace">
+                    <field name="price_unit" readonly="0"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/form/group/group[1]/field[@name='price_unit']" position="replace">
+                    <field name="price_unit" readonly="0"/>
+                    
+                </xpath>
+            </field>
+        </record>
+
+        <template id="sale_order_portal_content" name="Sales Order Portal Content" inherit_id="sale.sale_order_portal_content">
+            <xpath expr="//th[@t-if='display_discount']" position="after">
+                <th t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
+                    <span>Discount Amount</span>
+                </th>
+            </xpath>
+
+            <xpath expr="//td[@t-if='display_discount']" position="after">
+              <td class="text-right">
+                    <span class="oe_order_line_price_subtotal" t-field="line.discount_incurrency"/>
+                </td>
+            </xpath>
+
+            <xpath expr="//t[@t-foreach='sale_order.amount_by_group']" position="replace">
+                <tr class="border-black" style="border-bottom:1px solid #dddddd;">
+                    <td>
+                        <strong>VAT</strong>
+                    </td>
+                    <td class="text-right">
+                        <span data-id="total_vat" t-field="sale_order.amount_tax" t-options='{"widget": "monetary","display_currency": sale_order.pricelist_id.currency_id}'
+                                    />
+                </td>
+                </tr>
+            </xpath>
+
+
+        </template>
+
+    </data>
+
+
+</odoo>
