@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- <odoo>
+<odoo>
 	<data noupdate="0">
 
-        <delete model="ir.rule" search="[('id','=',ref('base.res_partner_rule_private_employee'))]"/>
+        <!-- <delete model="ir.rule" search="[('id','=',ref('base.res_partner_rule_private_employee'))]"/> -->
+        <function model="ir.model.data" name="enable_update" eval="('helpdesk', 'helpdesk_user_rule')"/>
+        
+        <record id="helpdesk.helpdesk_user_rule" model="ir.rule">
+            <field name="active" eval="False"/>
+        </record>
+        
+        <function model="ir.model.data" name="disable_update" eval="('helpdesk', 'helpdesk_user_rule')"/>
 
 	</data>
-</odoo> -->
+</odoo>
