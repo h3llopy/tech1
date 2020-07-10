@@ -9,10 +9,24 @@
                 <xpath expr="//field[@name='user_id']" position="before">
                     <field name="member_ids" widget="many2many_tags" invisible="1"/>
                 </xpath>
-				<!-- <xpath expr="//field[@name='user_id']" position="attributes">
+				<xpath expr="//field[@name='user_id']" position="attributes">
                     <attribute name="domain">[('id','in',member_ids)]</attribute> 
-                </xpath>-->
+                </xpath>
 			</field>
 		</record>
+
+		<record id="helpdesk.helpdesk_team_dashboard_action_main" model="ir.actions.act_window">
+			<field name="name">Helpdesk Overview</field>
+			<field name="res_model">helpdesk.team</field>
+			<field name="view_mode">kanban,form</field>
+			<field name="domain">[('member_ids.id', '=', uid)]</field>
+			<field name="context">{}</field>
+			<field name="view_id" ref="helpdesk.helpdesk_team_view_kanban"/>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_empty_folder">
+					Your teams will appear here
+				</p>
+			</field>
+    	</record>
 	</data>
 </odoo>
