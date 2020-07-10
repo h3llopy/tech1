@@ -88,7 +88,6 @@
         </record>
 
         <!-- Record Rules Helpdesk Team -->
-
         <record id="member_team_only_rule" model="ir.rule">
             <field name="name">Helpdesk Member Team View Only</field>
             <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
@@ -100,5 +99,6 @@
             <field name="perm_unlink" eval="False"/>
         </record>
         
+
     </data>
 </odoo>
