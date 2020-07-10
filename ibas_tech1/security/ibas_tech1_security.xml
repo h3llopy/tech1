@@ -28,6 +28,7 @@
             <field name="name">Suppliers Only</field>
             <field name="category_id" ref="ibas_tech1.module_category_ibas_contacts"/>
         </record>
+
         
         <!-- Set ALL CONTACTS as default access -->
 <!--         <record id="base.default_user" model="res.users">
@@ -86,19 +87,7 @@
             <field name="perm_create" eval="False"/>
             <field name="perm_unlink" eval="False"/>
         </record>
-
-        <!-- Record Rules Helpdesk Team -->
-
-        <record id="member_team_only_rule" model="ir.rule">
-            <field name="name">Helpdesk Member Team View Only</field>
-            <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
-            <field name="domain_force">[('member_ids', '=', user.id)]</field>    
-            <field name="groups" eval="[(4, ref('helpdesk.group_helpdesk_user'))]" />
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-        </record>
         
+
     </data>
 </odoo>
