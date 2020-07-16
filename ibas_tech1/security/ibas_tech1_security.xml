@@ -28,6 +28,13 @@
             <field name="name">Suppliers Only</field>
             <field name="category_id" ref="ibas_tech1.module_category_ibas_contacts"/>
         </record>
+        
+        <!-- HELPDESK -->
+        <record id="group_ibas_tech1_filter_access_helpdesk_team" model="res.groups">
+            <field name="name">Filter User Access To Helpdesk Team</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="users" eval="[(4, ref('base.default_user'))]"/>
+        </record>
 
         
         <!-- Set ALL CONTACTS as default access -->

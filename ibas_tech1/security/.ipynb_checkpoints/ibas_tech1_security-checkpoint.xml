@@ -29,6 +29,14 @@
             <field name="category_id" ref="ibas_tech1.module_category_ibas_contacts"/>
         </record>
         
+        <!-- HELPDESK -->
+        <record id="group_ibas_tech1_filter_access_helpdesk_team" model="res.groups">
+            <field name="name">Filter User Access To Helpdesk Team</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="users" eval="[(4, ref('base.default_user'))]"/>
+        </record>
+
+        
         <!-- Set ALL CONTACTS as default access -->
 <!--         <record id="base.default_user" model="res.users">
             <field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_all_contacts'))]"/>
@@ -87,5 +95,6 @@
             <field name="perm_unlink" eval="False"/>
         </record>
         
+
     </data>
 </odoo>
