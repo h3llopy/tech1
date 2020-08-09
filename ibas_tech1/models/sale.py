@@ -6,13 +6,23 @@ from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
 
+
+class Tech1SaleOrder(models.Model):
+
+    _inherit = 'sale.order'
+
+    user_id = fields.Many2one(
+        'res.users', string='Salesperson', index=True, tracking=2, default=lambda self: self.env.user,
+        domain=lambda self: ['|', ('groups_id', 'in', self.env.ref('sales_team.group_sale_salesman').id), ('groups_id', 'in', self.env.ref('ibas_tech1.group_ibas_tech1_dealer').id)])
+
+
 class Tech1Sale(models.Model):
-    
+
     _inherit = 'sale.order.line'
-    
+
     discount_incurrency = fields.Float(string='Discount Amount')
 
-    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id','discount_incurrency')
+    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id', 'discount_incurrency')
     def _compute_amount(self):
         """
         Compute the amounts of the SO line.
@@ -20,13 +30,14 @@ class Tech1Sale(models.Model):
         for line in self:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             price = price - line.discount_incurrency
-            taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty, product=line.product_id, partner=line.order_id.partner_shipping_id)
+            taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty,
+                                            product=line.product_id, partner=line.order_id.partner_shipping_id)
             line.update({
                 'price_tax': sum(t.get('amount', 0.0) for t in taxes.get('taxes', [])),
                 'price_total': taxes['total_included'],
                 'price_subtotal': taxes['total_excluded'],
             })
-    
+
     def _prepare_invoice_line(self):
         """
         Prepare the dict of values to create the new invoice line for a sales order line.

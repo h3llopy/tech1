@@ -28,12 +28,23 @@
             <field name="name">Suppliers Only</field>
             <field name="category_id" ref="ibas_tech1.module_category_ibas_contacts"/>
         </record>
+
+        <record id="group_ibas_tech1_dealer" model="res.groups">
+            <field name="name">Dealer</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="ibas_tech1.module_category_ibas_contacts"/>
+        </record>
         
         <!-- HELPDESK -->
         <record id="group_ibas_tech1_filter_access_helpdesk_team" model="res.groups">
             <field name="name">Filter User Access To Helpdesk Team</field>
             <field name="category_id" ref="base.module_category_hidden"/>
             <field name="users" eval="[(4, ref('base.default_user'))]"/>
+        </record>
+
+        <record id="group_stock_assigned_warehouses_only" model="res.groups">
+            <field name="name">Manage Assigned Warehouses Only</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
         </record>
 
         
@@ -43,6 +54,73 @@
         </record> -->
 
         <!-- Record Rules -->
+
+        <!-- Record Rules for Warehouse -->
+        <!-- Record Rules for Stock Picking Type -->
+        <record id="stock_picking_type_user_assigned_warehouse_rule" model="ir.rule">
+            <field name="name">Stock Picking Type User Assigned Warehouse Rule</field>
+            <field name="model_id" ref="stock.model_stock_picking_type"/>
+            <field name="domain_force">['|', ('warehouse_id', '=', False), ('warehouse_id', '=', user.warehouse_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
+        </record>
+        <!-- Record Rules for Stock Picking Type -->
+        <!-- Record Rules for Warehouse -->
+
+        <!-- Record Rules for Dealer -->
+        <!-- Helpdesk Dealer -->
+        <record id="helpdesk_ticket_dealer_rule" model="ir.rule">
+            <field name="name">Helpdesk Ticket Dealer</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+            <field name="domain_force">[('user_id','=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('group_ibas_tech1_dealer'))]"/>
+        </record>
+         <!-- CRM Dealer -->
+        <record id="crm_lead_dealer_rule" model="ir.rule">
+            <field name="name">CRM Lead Dealer</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="domain_force">[('user_id','=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('group_ibas_tech1_dealer'))]"/>
+        </record>
+
+         <!-- Sale Order Dealer -->
+        <record id="sale_order_dealer_rule" model="ir.rule">
+            <field name="name">Sale Order Dealer</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="domain_force">[('user_id','=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('group_ibas_tech1_dealer'))]"/>
+        </record>
+
+         <!-- Accounting Dealer -->
+        <record id="account_move_dealer_rule" model="ir.rule">
+            <field name="name">Account Move Dealer</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('group_ibas_tech1_dealer'))]"/>
+        </record>
+         <!-- Record Rules for Dealer -->
+
+
+
         <record id="partner_all_contacts" model="ir.rule">
             <field name="name">All Contacts</field>
             <field name="model_id" ref="base.model_res_partner"/>
