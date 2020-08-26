@@ -39,7 +39,7 @@
         'views/stock_view.xml',
         'views/crm_view.xml',
         'views/account_view.xml',
-        'views/sale_view.xml',
+        # 'views/sale_view.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
         'report/report_deliveryslip.xml',
