@@ -7,6 +7,26 @@
 		<field name="groups_id" eval="[(4,ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
 	</record>
 
+	
 	<!-- Dealer -->  
+	<record id="action_picking_tree_all2" model="ir.actions.act_window">
+            <field name="name">Stock Operations</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+			<field name="view_id" ref="stock.vpicktree"/>
+            <field name="domain"></field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create a new transfer.
+              </p><p>
+                You can either do it immediately or mark it as Todo for future processing. Use your scanner to validate the transferred quantity quicker.
+              </p>
+            </field>
+        </record>
+
+		<menuitem id="all_picking2" name="Transfers" parent="stock.menu_stock_warehouse_mgmt" sequence="5" action="action_picking_tree_all2" groups="ibas_tech1.group_ibas_tech1_dealer"/>
+
+
 	</data>
 </odoo>

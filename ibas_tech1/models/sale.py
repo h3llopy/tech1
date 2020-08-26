@@ -11,9 +11,27 @@ class Tech1SaleOrder(models.Model):
 
     _inherit = 'sale.order'
 
+    @api.model
+    def _default_warehouse_id(self):
+        company = self.env.company.id
+        flag = self.env['res.users'].has_group(
+            'ibas_tech1.group_ibas_tech1_dealer')
+        if flag:
+            warehouse_ids = self.env['stock.warehouse'].search(
+                [('id', '=', self.env.user.warehouse_id.id)], limit=1)
+        else:
+            warehouse_ids = self.env['stock.warehouse'].search(
+                [('company_id', '=', company)], limit=1)
+        return warehouse_ids
+
     user_id = fields.Many2one(
         'res.users', string='Salesperson', index=True, tracking=2, default=lambda self: self.env.user,
         domain=lambda self: ['|', ('groups_id', 'in', self.env.ref('sales_team.group_sale_salesman').id), ('groups_id', 'in', self.env.ref('ibas_tech1.group_ibas_tech1_dealer').id)])
+
+    warehouse_id = fields.Many2one(
+        'stock.warehouse', string='Warehouse',
+        required=True, readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        default=_default_warehouse_id, check_company=True)
 
 
 class Tech1Sale(models.Model):

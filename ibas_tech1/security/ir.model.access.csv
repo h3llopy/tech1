@@ -3,11 +3,12 @@ access_ibas_tech1_helpdesk_ticket,ibas_tech1.helpdesk_ticket,helpdesk.model_help
 access_ibas_tech1_helpdesk_stage,ibas_tech1.helpdesk_stage,helpdesk.model_helpdesk_stage,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_helpdesk_sla_status,ibas_tech1.helpdesk_sla_status,helpdesk.model_helpdesk_sla_status,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 
-access_ibas_tech1_crm_lead,ibas_tech1.crm_lead,crm.model_crm_lead,ibas_tech1.group_ibas_tech1_dealer,1,1,0,0
+access_ibas_tech1_crm_lead,ibas_tech1.crm_lead,crm.model_crm_lead,ibas_tech1.group_ibas_tech1_dealer,1,1,1,0
 access_ibas_tech1_sale_order,ibas_tech1.sale_order,sale.model_sale_order,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_sale_order_line,ibas_tech1.sale_order_line,sale.model_sale_order_line,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_stock_move,ibas_tech1.stock_move,stock.model_stock_move,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_stock_picking,ibas_tech1.stock_picking,stock.model_stock_picking,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
+access_ibas_tech1_stock_scrap,ibas_tech1.stock_scrap,stock.model_stock_scrap,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 
 access_ibas_tech1_account_move,ibas_tech1.account_move,account.model_account_move,ibas_tech1.group_ibas_tech1_dealer,1,1,1,0
 access_ibas_tech1_account_move_line,ibas_tech1.account_move_line,account.model_account_move_line,ibas_tech1.group_ibas_tech1_dealer,1,1,1,0
