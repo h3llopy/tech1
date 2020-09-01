@@ -6,6 +6,33 @@
 	<record model="ir.ui.menu" id="stock.menu_stock_root">
 		<field name="groups_id" eval="[(4,ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
 	</record>
+<!--
+  <record model="ir.ui.view" id="stock.product_template_form_view_procurement_button">
+		  <field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
+	</record>
+-->
+      <!-- view used for product.template only -->
+        <record model="ir.ui.view" id="ibas_product_template_form_view_procurement_button">
+            <field name="name">ibas_product.template_procurement</field>
+            <field name="model">product.template</field>
+            <field name="groups_id" eval="[(4, ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+              <data>
+                  <div name="button_box" position="inside">
+                      <button type="object" name="action_open_quants" attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
+                          <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_value" widget="statinfo">
+                                  <field name="qty_available" widget="statinfo" nolabel="1" class="mr4"/>
+                                  <field name="uom_name"/>
+                              </span>
+                              <span class="o_stat_text">On Hand</span>
+                          </div>
+                      </button>
+                  </div>
+              </data>
+            </field>
+        </record>
 
 	
 	<!-- Dealer -->  

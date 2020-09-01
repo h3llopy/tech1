@@ -80,6 +80,19 @@
             <field name="groups" eval="[(4, ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
         </record>
         <!-- Record Rules for Stock Picking-->
+
+         <record id="stock_quant_user_assigned_warehouse_rule" model="ir.rule">
+            <field name="name">Stock Quant User Assigned Warehouse Rule</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="domain_force">[('location_id', '=', user.warehouse_id.lot_stock_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
+        </record>
+        <!-- Record Rules for Stock Picking-->
+
         <!-- Record Rules for Warehouse -->
 
         <!-- Record Rules for Dealer -->
