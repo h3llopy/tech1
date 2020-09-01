@@ -14,3 +14,13 @@ class HelpdeskTicket(models.Model):
 #     def _on_change_team_id(self):
 #         member_ids = self.team_id.mapped('member_ids').ids
 #         return  {'domain': {'user_id': [('id', 'in', member_ids)]}}
+
+
+class HelpdeskTeam(models.Model):
+    _inherit = 'helpdesk.team'
+
+    def _default_domain_member_ids(self):
+        return ['|', ('groups_id', 'in', self.env.ref('helpdesk.group_helpdesk_user').id), ('groups_id', 'in', self.env.ref('ibas_tech1.group_ibas_tech1_dealer').id)]
+
+    member_ids = fields.Many2many(
+        'res.users', string='Team Members', domain=lambda self: self._default_domain_member_ids())

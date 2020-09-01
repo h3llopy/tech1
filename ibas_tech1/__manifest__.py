@@ -19,13 +19,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock', 'sale', 'sales_team', 'account', 'web', 'purchase', 'purchase_stock', 'account', 'helpdesk'],
+    'depends': ['base', 'stock', 'sale', 'sales_team', 'account', 'web', 'purchase', 'purchase_stock', 'account', 'helpdesk', 'sale_stock'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
         'data/ir_rule_data.xml',
         'security/ibas_tech1_security.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/view_order_form.xml',
@@ -35,6 +35,11 @@
         'views/stock_picking.xml',
         'views/cus_account_move_views.xml',
         'views/helpdesk_ticket.xml',
+        'views/res_users_view.xml',
+        'views/stock_view.xml',
+        'views/crm_view.xml',
+        'views/account_view.xml',
+        # 'views/sale_view.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
         'report/report_deliveryslip.xml',
