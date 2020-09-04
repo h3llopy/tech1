@@ -132,16 +132,18 @@
         </record>
 
          <!-- Accounting Dealer -->
+         <!--
         <record id="account_move_dealer_rule" model="ir.rule">
             <field name="name">Account Move Dealer</field>
             <field name="model_id" ref="account.model_account_move"/>
-            <field name="domain_force">[('create_uid','=', user.id)]</field>
+            <field name="domain_force">[('invoice_user_uid','=', user.id)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_unlink" eval="False"/>
             <field name="groups" eval="[(4, ref('group_ibas_tech1_dealer'))]"/>
         </record>
+        -->
          <!-- Record Rules for Dealer -->
 
 
