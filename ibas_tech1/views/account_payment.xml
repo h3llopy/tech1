@@ -15,6 +15,10 @@
                 <field name="approved_by"/>
                 <field name="remarks"/>
             </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="payment_method"/>
+            </xpath>
         </field>
     </record>
 </data>
