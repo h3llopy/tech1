@@ -46,6 +46,7 @@
         'report/report_cus_account_move.xml',
         'report/report_account_payable_voucher.xml',
         'report/report_account_journal_voucher.xml',
+        'report/report_sale_order.xml',
         'report/report_menu.xml',
     ],
     # only loaded in demonstration mode
