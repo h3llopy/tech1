@@ -106,6 +106,7 @@
 
 </template>
 
+<!-- CHECK VOUCHER -->
 <template id="ibas_check_voucher">
     <t t-call="web.html_container">
         <t t-foreach="docs" t-as="doc">
@@ -121,26 +122,62 @@
                     </div>
                     <br/>
                     <br/>
-                   <div class="row">
-                        <div class="col-3">
-                            Payee: <br/>
-                            Date: <br/>
-                            Payment Method: <br/>
-                        </div>
-                       <div class="col-3">
-                           <span t-field="doc.partner_id.name"/><br/>
-                           <span t-field="doc.payment_date"/> <br/>
-                           Cheque <br/>
-                        </div>
-                       <div class="col-3">
-                           CV No: <br/>
-                           Check No: <br/>
-                        </div>
-                       <div class="col-3">
-                           <span t-field="doc.cv_no"/><br/>
-                           <span t-field="doc.check_no"/><br/>
-                        </div>
-                    </div>
+              
+                    <table style="width: 100%; border: none;">
+                        
+                        <tr style="border: none">
+                            <td style="width: 50%; border: none;">
+                                <table style="width: 100%; border: none;">
+                                    <tr>
+                                        <td style="width: 50%; border: none;">
+                                        Payee:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.partner_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        Date:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.payment_date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        Payment Method:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            cheque
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 50%; border: none; background-color: white">
+                                <table style="width: 100%; border: none;">
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        CV No:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.cv_no"/>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        Check No:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.check_no"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                    </table>
 
                     <br/>
 
@@ -260,6 +297,199 @@
     name="ibas_tech1.ibas_check_voucher"
     file="ibas_tech1.ibas_check_voucher"
 />
+
+
+<!-- PAYMENT VOUCHER -->
+<template id="ibas_payment_voucher">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="ibas_tech1.ibas_external_layout">
+            <t t-set="o" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+                <div class="page">
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="border: 1px solid black; font-size:20px;">
+                                <center><strong><span>PAYMENT VOUCHER</span></strong></center>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                   
+                    <table style="width: 100%; border: none;">
+                        
+                        <tr style="border: none">
+                            <td style="width: 50%; border: none;">
+                                <table style="width: 100%; border: none;">
+                                    <tr>
+                                        <td style="width: 50%; border: none;">
+                                        Payee:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.partner_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        Date:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.payment_date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        Payment Method:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            cheque
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 50%; border: none; background-color: white">
+                                <table style="width: 100%; border: none;">
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        CV No:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.cv_no"/>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                        Check No:
+                                        </td>
+                                        <td style="width: 50%; border: none; background-color: white">
+                                            <span t-field="doc.check_no"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    <br/>
+
+                    <table border="1" style="height: 400px; width: 100%; border-collapse: collapse; padding: 0.5em;">
+                        <tbody>
+                            <tr style="height: 21px;">
+                                <td style="width: 50%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>ACCOUNT TITLE</strong></td>
+                                <td style="width: 25%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>DEBIT</strong></td>
+                                <td style="width: 25%; text-align: center; padding: 0.5em;border-bottom: 1px solid black;"><strong>CREDIT</strong></td>
+                            </tr>
+                            <t t-set="debit_total" t-value="0"/>
+                            <t t-set="credit_total" t-value="0"/>
+                            <tr t-foreach="doc.move_line_ids" t-as="move">
+                                <t t-set="debit_total" t-value="debit_total + move.debit"/>
+                                <t t-set="credit_total" t-value="credit_total + move.credit"/>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <p></p>
+                                    <p><span t-field="move.account_id.name"/><br/></p>
+                                    <p></p>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <span t-field="move.debit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;">
+                                    <span t-field="move.credit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 100%;">
+                                </td>
+                                <td style="height: 100%;">
+                                </td>
+                                <td style="height: 100%;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5em;border-top: 1px solid black;">
+                                    <p>TOTAL</p>
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;border-top: 1px solid black;">
+                                    <strong><span t-field="doc.currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(debit_total)" />
+                                </td>
+                                <td style="text-align: center; padding: 0.5em;border-top: 1px solid black;">
+                                    <strong><span t-field="doc.currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(credit_total)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <br/>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="border: 1px solid black; padding: 0.5em; height:100px;">
+                                <h5>REMARKS:</h5><br/>
+                                <span t-field="doc.remarks"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p><strong>Prepared by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <center><span t-field="doc.prepared_by"/></center>
+                        </div>
+                        <div class="col-3">
+                            <p><strong>Reviewed by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <center><span t-field="doc.review_by"/></center>
+                        </div>
+                        <div class="col-3">
+                            <p><strong>Approved by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <center><span t-field="doc.approved_by"/></center>
+                        </div>
+                        <div class="col-3">
+                            <p><strong>Received by:</strong></p>
+                            <span>____________________________</span><br/>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <!-- <br/><br/><br/><br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="col-3">
+                            <p style="text-align: right;">Received By:</p>
+                            <p style="text-align: right;">Date:</p>
+                            <br/>
+                        </div>
+                        <div class="col-3">
+                            <p style="text-align: left;">____________________________</p>
+                            <p style="text-align: left;">____________________________</p>
+                            <br/>
+                        </div>
+                    </div> -->
+
+                </div>
+
+            </t>
+        </t>
+    </t>
+</template>
+
+<report
+    id="action_report_payment_voucher"
+    model="account.payment"
+    string="Payment Voucher"
+    report_type="qweb-pdf"
+    name="ibas_tech1.ibas_payment_voucher"
+    file="ibas_tech1.ibas_payment_voucher"
+/>
+
 
 
 
