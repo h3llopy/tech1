@@ -149,7 +149,7 @@
                                         Payment Method:
                                         </td>
                                         <td style="width: 50%; border: none; background-color: white">
-                                            cheque
+                                            <span t-field="doc.payment_method"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -342,7 +342,7 @@
                                         Payment Method:
                                         </td>
                                         <td style="width: 50%; border: none; background-color: white">
-                                            cheque
+                                            <span t-field="doc.payment_method"/>
                                         </td>
                                     </tr>
                                 </table>
