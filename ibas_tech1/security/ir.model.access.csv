@@ -7,6 +7,9 @@ access_ibas_tech1_crm_lead,ibas_tech1.crm_lead,crm.model_crm_lead,ibas_tech1.gro
 access_ibas_tech1_sale_order,ibas_tech1.sale_order,sale.model_sale_order,ibas_tech1.group_ibas_tech1_dealer,1,1,1,0
 access_ibas_tech1_sale_order_line,ibas_tech1.sale_order_line,sale.model_sale_order_line,ibas_tech1.group_ibas_tech1_dealer,1,1,1,0
 
+access_ibas_tech1_purchase_order,ibas_tech1.purchase_order,purchase.model_purchase_order,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
+access_ibas_tech1_purchase_order_line,ibas_tech1.purchase_order_line,purchase.model_purchase_order_line,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
+
 access_ibas_tech1_stock_move,ibas_tech1.stock_move,stock.model_stock_move,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_stock_picking,ibas_tech1.stock_picking,stock.model_stock_picking,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_stock_scrap,ibas_tech1.stock_scrap,stock.model_stock_scrap,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
