@@ -23,6 +23,9 @@
         </field>
     </record>
 
-</data>
+    <record model="ir.ui.menu" id="purchase.menu_purchase_root"> 	
+		<field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
+    </record>
 
+</data>
 </odoo>
