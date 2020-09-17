@@ -10,6 +10,20 @@ class HelpdeskTicket(models.Model):
         'res.users', string='Assigned to', track_visibility='onchange')
     member_ids = fields.Many2many('res.users', related='team_id.member_ids')
 
+    title_name = fields.Selection([
+        ('delivery', 'Delivery'),
+        ('collection', 'Collection'),
+        ('pick-up', 'Pick-up (Units for Repair)'),
+        ('deliver-collect', 'Delivery/Collection'),
+        ('deliver-pick', 'Delivery/Pick-up'),
+        ('collect-pick', 'Collection/Pick-up'),
+    ])
+
+    @api.onchange('title_name')
+    def _onchange_title_name(self):
+        self.name = dict(self._fields['title_name'].selection).get(
+            self.title_name)
+
 #     @api.onchange('team_id','user_id')
 #     def _on_change_team_id(self):
 #         member_ids = self.team_id.mapped('member_ids').ids
