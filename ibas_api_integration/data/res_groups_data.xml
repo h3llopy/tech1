@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="base.group_public" model="res.groups">
+            <field name="users" eval="[(4, ref('ibas_api_integration.ibas_api_user'))]"/>
+        </record>
+    </data>
+</odoo>

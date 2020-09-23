@@ -20,10 +20,12 @@
     # always loaded
     'data': [
         # Security
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
 
         # Data
         'data/ir_cron_data.xml',
+        'data/res_users_data.xml',
+        'data/res_groups_data.xml',
 
         # Views
         'views/res_partner_ext_views.xml'
