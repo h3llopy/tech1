@@ -63,10 +63,10 @@
                                     <span t-field="move.analytic_account_id.name"/>
                                 </td>
                                 <td style="text-align: center; padding: 0.5em;">
-                                    <span t-field="move.debit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="move.debit"/>
                                 </td>
                                 <td style="text-align: center; padding: 0.5em;">
-                                    <span t-field="move.credit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="move.credit"/>
                                 </td>
                             </tr>
                             <tr>
@@ -84,10 +84,10 @@
                                     <p>TOTAL</p>
                                 </td>
                                 <td style="text-align: center; padding: 0.5em;border-top: 1px solid black;">
-                                    <strong><span t-field="doc.currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(debit_total)" />
+                                    <strong><span t-field="doc.company_currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(debit_total)" />
                                 </td>
                                 <td style="text-align: center; padding: 0.5em;border-top: 1px solid black;">
-                                    <strong><span t-field="doc.currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(credit_total)" />
+                                    <strong><span t-field="doc.company_currency_id.symbol"/></strong> <span t-esc="'{0:,.2f}'.format(credit_total)" />
                                 </td>
                             </tr>
                         </tbody>

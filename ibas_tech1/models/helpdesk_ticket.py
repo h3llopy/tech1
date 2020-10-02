@@ -10,7 +10,31 @@ class HelpdeskTicket(models.Model):
         'res.users', string='Assigned to', track_visibility='onchange')
     member_ids = fields.Many2many('res.users', related='team_id.member_ids')
 
+    title_name = fields.Selection([
+        ('delivery', 'Delivery'),
+        ('collection', 'Collection'),
+        ('pick-up', 'Pick-up (Units for Repair)'),
+        ('deliver-collect', 'Delivery/Collection'),
+        ('deliver-pick', 'Delivery/Pick-up'),
+        ('collect-pick', 'Collection/Pick-up'),
+    ])
+
+    @api.onchange('title_name')
+    def _onchange_title_name(self):
+        self.name = dict(self._fields['title_name'].selection).get(
+            self.title_name)
+
 #     @api.onchange('team_id','user_id')
 #     def _on_change_team_id(self):
 #         member_ids = self.team_id.mapped('member_ids').ids
 #         return  {'domain': {'user_id': [('id', 'in', member_ids)]}}
+
+
+class HelpdeskTeam(models.Model):
+    _inherit = 'helpdesk.team'
+
+    def _default_domain_member_ids(self):
+        return ['|', ('groups_id', 'in', self.env.ref('helpdesk.group_helpdesk_user').id), ('groups_id', 'in', self.env.ref('ibas_tech1.group_ibas_tech1_dealer').id)]
+
+    member_ids = fields.Many2many(
+        'res.users', string='Team Members', domain=lambda self: self._default_domain_member_ids())
