@@ -28,8 +28,14 @@
 		<field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
     </record>-->
 
-
-
-
-    
+    <record id="ibas_crm_lead_view_form" model="ir.ui.view">
+        <field name="name">ibas.crm.lead.view.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="domain">[('share', '=', False), ('company_id', '=', company_id)]</attribute>
+            </xpath>
+        </field>
+	</record>
 </odoo>
