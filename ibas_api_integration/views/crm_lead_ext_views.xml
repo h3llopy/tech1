@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="ibas_crm_lead_view_form" model="ir.ui.view">
+        <field name="name">ibas.crm.lead.view.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='lead']/group/group[1]/field[@name='partner_name']" position="after">
+                <field name="company_email_address"/>
+                <field name="business_type"/>
+                <field name="license_duration"/>
+                <field name="product_id"/>
+                <field name="number_of_slots"/>
+                <field name="total_amount"/>
+                <field name="registration_account_license"/>
+            </xpath>
+        </field>
+      </record>
+  </data>
+</odoo>

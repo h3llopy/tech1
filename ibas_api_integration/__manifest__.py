@@ -15,7 +15,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['base','contacts'],
+    'depends': ['base','contacts', 'crm'],
 
     # always loaded
     'data': [
@@ -28,7 +28,8 @@
         'data/res_groups_data.xml',
 
         # Views
-        'views/res_partner_ext_views.xml'
+        'views/res_partner_ext_views.xml',
+        'views/crm_lead_ext_views.xml',
     ],
     'demo': [
         'demo/demo.xml',
