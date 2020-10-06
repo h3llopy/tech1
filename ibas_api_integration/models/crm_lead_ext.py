@@ -22,13 +22,8 @@ class IBASCRMLeadExt(models.Model):
     def create(self, vals):
         result = super(IBASCRMLeadExt, self).create(vals)
 
-        # Create partner
-        context = {'active_model': 'crm.lead', 'active_id': result.id}
-        quotation_partner_id = self.env['crm.quotation.partner'].with_context(context).create({'action': 'create'})
-        quotation_partner_id.action_apply()
-
         # Create quotation from CRM lead
-        result.action_sale_quotations_new()
+        self._generate_quotation(result)
         return result
 
     @api.onchange('product_id', 'number_of_slots')
@@ -40,4 +35,21 @@ class IBASCRMLeadExt(models.Model):
             else:
                 slf.total_amount = 0.0
 
-    def _generate_quotation(self):
+    def _generate_quotation(self, lead_id):
+        # Create partner
+        context = {'active_model': 'crm.lead', 'active_id': lead_id.id}
+        quotation_partner_id = self.env['crm.quotation.partner'].with_context(context).create({'action': 'create'})
+        quotation_partner_id.action_apply()
+
+        quotation_data = {'partner_id': lead_id.partner_id.id,
+                          'partner_invoice_id': lead_id.partner_id.id,
+                          'partner_shipping_id': lead_id.partner_id.id,
+                          'opportunity_id': lead_id.id}
+
+        # For improvement: Free subscription hardcoded to 10, Make it configurable.
+        number_of_quotation = 1
+        if lead_id.number_of_slots > 10:
+            number_of_quotation += 1
+
+        for x in range(0, number_of_quotation):
+            self.env['sale.order'].sudo().create(quotation_data)
