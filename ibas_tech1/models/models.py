@@ -6,7 +6,10 @@ class Tech1StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     pick_line_description = fields.Text(string='Description')
-
+    partner_id = fields.Many2one(
+        'res.partner', 'Contact',
+        check_company=False,
+        states={'done': [('readonly', True)], 'cancel': [('readonly', True)]})
     @api.depends('product_id')
     def updatedesc(self):
         for rec in self:
