@@ -2,6 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_ibas_tech1_helpdesk_ticket,ibas_tech1.helpdesk_ticket,helpdesk.model_helpdesk_ticket,ibas_tech1.group_ibas_tech1_dealer,1,1,0,0
 access_ibas_tech1_helpdesk_stage,ibas_tech1.helpdesk_stage,helpdesk.model_helpdesk_stage,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_helpdesk_sla_status,ibas_tech1.helpdesk_sla_status,helpdesk.model_helpdesk_sla_status,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
+access_helpdesk_ticket_manager,helpdesk.ticket,model_helpdesk_ticket,helpdesk.group_helpdesk_manager,1,1,1,1
 helpdesk.access_helpdesk_ticket,helpdesk.ticket,model_helpdesk_ticket,helpdesk.group_helpdesk_user,1,1,0,0
 
 access_ibas_tech1_crm_lead,ibas_tech1.crm_lead,crm.model_crm_lead,ibas_tech1.group_ibas_tech1_dealer,1,1,1,0
