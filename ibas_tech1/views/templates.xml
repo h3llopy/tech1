@@ -20,5 +20,48 @@
           </dl>
         </template>
 -->
+        <template id="ibas_website_sale_product_template" name='Modify add to cart button' inherit_id="website_sale.product" priority="8">
+            <xpath expr="//a[@id='add_to_cart']" position="replace">
+                <t t-if="not user_id.partner_id.name == 'Public user'">
+                    <a role="button" id="add_to_cart" class="btn btn-primary btn-lg mt16 js_check_product a-submit d-block d-sm-inline-block" href="#"><i class="fa fa-shopping-cart"/> Add to Cart</a>
+                </t>
+            </xpath>Fv
+        </template>
+<!--        <template id="ibas_website_homepage" name='Modify home page' inherit_id="website.homepage">-->
+<!--            <xpath expr="//div[@id='wrap']" position="before">-->
+<!--                <t t-set="published_products" t-value="website._get_published_product()"/>-->
+
+<!--                <div class="col-lg-7 col-md-8">-->
+<!--                  <div class="col-lg-7 col-md-8">-->
+<!--                  <select class="form-control o_website_form_input" name="Product Name" required="false">-->
+<!--                      <t t-foreach="published_products" t-as="product">-->
+<!--                          <option t-att-value="product.id"><t t-esc="product.name"/></option>-->
+<!--                      </t>-->
+<!--&lt;!&ndash;                    <option value="Choose a Product...">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Choose a Product...&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="Alerto">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Alerto&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="QuickTalk Go">&ndash;&gt;-->
+<!--&lt;!&ndash;                                QuickTalk Go&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="QuickTalk Pro">&ndash;&gt;-->
+<!--&lt;!&ndash;                                QuickTalk Pro&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="Patrol">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Patrol&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="Trooper">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Trooper&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="Trooper M">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Trooper M&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--                </div>-->
+<!--            </xpath>-->
+<!--        </template>-->
     </data>
 </odoo>
