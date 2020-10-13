@@ -66,6 +66,12 @@
 				<xpath expr="//field[@name='team_id']" position="attributes">
                     <attribute name="readonly">1</attribute> 
                 </xpath>
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+				<xpath expr="//field[@name='partner_email']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
 			</field>
 	</record>
 
