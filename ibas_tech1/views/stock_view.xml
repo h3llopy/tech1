@@ -37,11 +37,10 @@
         <record model="ir.ui.view" id="ibas_product_template_tree_view">
             <field name="name">ibas.product.template.tree.view</field>
             <field name="model">product.template</field>
-            <field name="groups_id" eval="[(4, ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
                 <field name="standard_price" position="attributes">
-                    <attribute name="invisible">True</attribute>
+                    <attribute name="groups">sales_team.group_sale_manager</attribute>
                 </field>
             </field>
         </record>
@@ -63,7 +62,7 @@
         <menuitem id="ibas_dealer_menu_product_variant_config_stock" name="Products" action="ibas_dealer_product_template_action_product"
                   parent="stock.menu_stock_inventory_control" sequence="1" groups="ibas_tech1.group_ibas_tech1_dealer"/>
         <menuitem id="stock.menu_product_variant_config_stock" name="Products" action="stock.product_template_action_product"
-                  parent="stock.menu_stock_inventory_control" sequence="1" groups="stock.group_stock_manager"/>
+                  parent="stock.menu_stock_inventory_control" sequence="1"/>
 	
 	<!-- Dealer -->  
 	<record id="action_picking_tree_all2" model="ir.actions.act_window">
