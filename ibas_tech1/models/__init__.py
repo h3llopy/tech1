@@ -5,3 +5,4 @@ from . import stock_move
 from . import helpdesk_ticket
 from . import res_users
 from . import crm_lead
+from . import product_template
