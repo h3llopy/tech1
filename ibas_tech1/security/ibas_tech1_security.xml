@@ -80,10 +80,11 @@
         <record id="stock_picking_type_user_assigned_warehouse_rule" model="ir.rule">
             <field name="name">Stock Picking Type User Assigned Warehouse Rule</field>
             <field name="model_id" ref="stock.model_stock_picking_type"/>
-            <field name="domain_force">['|', ('warehouse_id', '=', False), ('warehouse_id', '=', user.warehouse_id.id)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
+<!--            <field name="domain_force">['|', ('warehouse_id', '=', False), ('warehouse_id', '=', user.warehouse_id.id)]</field>-->
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="False"/>
             <field name="groups" eval="[(4, ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
         </record>
@@ -92,10 +93,11 @@
         <record id="stock_picking_user_assigned_warehouse_rule" model="ir.rule">
             <field name="name">Stock Picking User Assigned Warehouse Rule</field>
             <field name="model_id" ref="stock.model_stock_picking"/>
-            <field name="domain_force">[('location_id', '=', user.warehouse_id.lot_stock_id.id)]</field>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
+<!--            <field name="domain_force">[('location_id', '=', user.warehouse_id.lot_stock_id.id)]</field>-->
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="False"/>
             <field name="groups" eval="[(4, ref('ibas_tech1.group_stock_assigned_warehouses_only'))]"/>
         </record>
@@ -231,7 +233,23 @@
             <field name="perm_create" eval="False"/>
             <field name="perm_unlink" eval="False"/>
         </record>
-        
 
+        <record id="sale_management.sale_order_template_rule_company" model="ir.rule">
+            <field name="name">Quotation Template multi-company</field>
+            <field name="model_id" ref="sale_management.model_sale_order_template"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="inventory_overview_record_rule" model="ir.rule">
+            <field name="groups" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
+            <field name="name">Inventory Overview Record Rule</field>
+            <field name="model_id" ref="stock.model_stock_picking_type"/>
+            <field name="domain_force">[('warehouse_id', '=', user.warehouse_id.id)]</field>
+        </record>
+
+        <record id="sale.product_menu_catalog" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_manager')])]"/>
+        </record>
     </data>
 </odoo>

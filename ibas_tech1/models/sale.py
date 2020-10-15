@@ -11,6 +11,15 @@ class Tech1SaleOrder(models.Model):
 
     _inherit = 'sale.order'
 
+    def _get_partner_id_domain(self):
+        user = self.env.user
+        if user and (user.has_group('ibas_tech1.group_ibas_tech1_dealer')):
+            domain = ['|', ('user_id', '=', user.id), ('create_uid', '=', user.id)]
+        else:
+            domain = ['|', ('company_id', '=', False), ('company_id', '=', user.company_id.id)]
+
+        return domain
+
     @api.model
     def _default_warehouse_id(self):
         company = self.env.company.id
@@ -32,6 +41,12 @@ class Tech1SaleOrder(models.Model):
         'stock.warehouse', string='Warehouse',
         required=True, readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         default=_default_warehouse_id, check_company=True)
+
+    partner_id = fields.Many2one(
+        'res.partner', string='Customer', readonly=True,
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        required=True, change_default=True, index=True, tracking=1,
+        domain=_get_partner_id_domain,)
 
 
 class Tech1Sale(models.Model):
