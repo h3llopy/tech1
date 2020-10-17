@@ -16,7 +16,7 @@ class IBASPO(models.Model):
     def _get_partner_id_domain(self):
         user = self.env.user
         if user and (user.has_group('ibas_tech1.group_ibas_tech1_dealer')):
-            domain = ['|', ('user_id', '=', user.id), ('create_uid', '=', user.id)]
+            domain = ['|', '|', ('user_id', '=', user.id), ('create_uid', '=', user.id), ('name', '=', 'Tech1 Corporation1')]
         else:
             domain = ['|', ('company_id', '=', False), ('company_id', '=', user.company_id.id)]
 
