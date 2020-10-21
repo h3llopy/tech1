@@ -29,6 +29,6 @@
                   action="contacts.action_contacts"
                   parent="contacts.menu_contacts"
                   sequence="2"
-                  groups="ibas_tech1.group_ibas_tech1_all_contacts"/>
+                  groups="base.group_partner_manager"/>
     </data>
 </odoo>

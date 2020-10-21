@@ -23,6 +23,17 @@
         </field>
     </record>
 
+    <record id="ibas_po_view_form_dealer" model="ir.ui.view">
+        <field name="name">ibas.po.view.form.dealer</field>
+        <field name="model">purchase.order</field>
+        <field name="groups_id" eval="[(6, 0, [ref('ibas_tech1.group_ibas_tech1_dealer')])]"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="attributes">
+                <attribute name="domain">[('is_published', '=', True)]</attribute>
+            </field>
+        </field>
+    </record>
     <record model="ir.ui.menu" id="purchase.menu_purchase_root"> 	
 		<field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
     </record>
