@@ -248,8 +248,27 @@
             <field name="domain_force">[('warehouse_id', '=', user.warehouse_id.id)]</field>
         </record>
 
-<!--        <record id="sale.product_menu_catalog" model="ir.ui.menu">-->
-<!--            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_manager')])]"/>-->
-<!--        </record>-->
+        <record id="group_helpdesk_dealer_user" model="res.groups">
+            <field name="name">Dealer User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="base.module_category_operations_helpdesk"/>
+        </record>
+
+        <record id="helpdesk.group_helpdesk_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('group_helpdesk_dealer_user'))]"/>
+            <field name="category_id" ref="base.module_category_operations_helpdesk"/>
+        </record>
+
+        <record id="helpdesk.menu_helpdesk_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('group_helpdesk_dealer_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+        </record>
+
+        <record id="helpdesk_dealer_overview_record_rule" model="ir.rule">
+            <field name="groups" eval="[(4,ref('group_helpdesk_dealer_user'))]"/>
+            <field name="name">Helpdesk Dealer Overview Record Rule</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
+            <field name="domain_force">[('alias_id.alias_name', '=', user.login.split('@')[0])]</field>
+        </record>
     </data>
 </odoo>
