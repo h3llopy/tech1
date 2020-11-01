@@ -22,6 +22,7 @@ access_ibas_tech1_account_journal,ibas_tech1.account_journal,account.model_accou
 access_ibas_tech1_account_account_type,ibas_tech1.account_account_type,account.model_account_account_type,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 access_ibas_tech1_account_partial_reconcile,ibas_tech1.account_partial_reconcile,account.model_account_partial_reconcile,ibas_tech1.group_ibas_tech1_dealer,1,0,0,0
 
+helpdesk.access_helpdesk_ticket,helpdesk.ticket,model_helpdesk_ticket,helpdesk.group_helpdesk_user,1,1,1,0
 access_helpdesk_dealer_tag,ibas_tech1.helpdesk.tag,helpdesk.model_helpdesk_tag,ibas_tech1.group_helpdesk_dealer_user,1,1,1,1
 access_helpdesk_dealer_sla,ibas_tech1.helpdesk.sla,helpdesk.model_helpdesk_sla,ibas_tech1.group_helpdesk_dealer_user,1,0,0,0
 access_helpdesk_dealer_sla_status,ibas_tech1.helpdesk.sla.status,helpdesk.model_helpdesk_sla_status,ibas_tech1.group_helpdesk_dealer_user,1,0,0,0
