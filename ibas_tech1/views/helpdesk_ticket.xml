@@ -34,7 +34,7 @@
 			</field>
     	</record>
         
-        <menuitem id="helpdesk_menu_team_dashboard_user" action="ibas_tech1.helpdesk_team_dashboard_action_main_user" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="ibas_tech1.group_ibas_tech1_filter_access_helpdesk_team"/>
+<!--        <menuitem id="helpdesk_menu_team_dashboard_user" action="ibas_tech1.helpdesk_team_dashboard_action_main_user" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="ibas_tech1.group_ibas_tech1_filter_access_helpdesk_team"/>-->
         
         <record id="helpdesk.helpdesk_team_dashboard_action_main" model="ir.actions.act_window">
         <field name="name">Helpdesk Overview</field>
