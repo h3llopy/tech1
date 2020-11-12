@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+
+		<!-- Override for Helpdesk Team -->
+
+
+		<menuitem id="helpdesk.helpdesk_menu_team_dashboard" action="helpdesk.helpdesk_team_dashboard_action_main" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview - All Teams" groups="helpdesk.group_helpdesk_manager"/>
+
+		<!-- Ends Override Here - RRD -->
+
+		<!-- Helpdesk User Override -->
+
+		<menuitem id="helpdesk_menu_own_team_ibas" action="helpdesk_team_dashboard_action_main_dealer" sequence="2" parent="helpdesk.menu_helpdesk_root" name="Overview - My Teams" groups="helpdesk.group_helpdesk_user"/>
+
+
+
+
 		<record id="helpdesk_ticket_view_form_extend" model="ir.ui.view">
 			<field name="name">helpdesk.ticket.form.extend</field>
 			<field name="model">helpdesk.ticket</field>
 			<field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='sla_status_ids']" position="before">
-                    <field name="title_name"/>
-                </xpath>
+					<field name="title_name"/>
+				</xpath>
 
-                <xpath expr="//field[@name='user_id']" position="before">
-                    <field name="member_ids" widget="many2many_tags" invisible="1"/>
-                </xpath>
+				<xpath expr="//field[@name='user_id']" position="before">
+					<field name="member_ids" widget="many2many_tags" invisible="1"/>
+				</xpath>
 				<xpath expr="//field[@name='user_id']" position="attributes">
-                    <attribute name="domain">[('id','in',member_ids)]</attribute> 
-                </xpath>
+					<attribute name="domain">[('id','in',member_ids)]</attribute>
+				</xpath>
 			</field>
 		</record>
 
@@ -24,7 +39,7 @@
 			<field name="res_model">helpdesk.team</field>
 			<field name="view_mode">kanban,form</field>
 			<field name="domain">[('member_ids.id', '=', uid)]</field>
-            <field name="groups_id" eval="[(6,0, [ref('ibas_tech1.group_ibas_tech1_filter_access_helpdesk_team')])]"/>
+			<field name="groups_id" eval="[(6,0, [ref('ibas_tech1.group_ibas_tech1_filter_access_helpdesk_team')])]"/>
 			<field name="context">{}</field>
 			<field name="view_id" ref="helpdesk.helpdesk_team_view_kanban"/>
 			<field name="help" type="html">
@@ -32,55 +47,55 @@
 					Your teams will appear here
 				</p>
 			</field>
-    	</record>
-        
-<!--        <menuitem id="helpdesk_menu_team_dashboard_user" action="ibas_tech1.helpdesk_team_dashboard_action_main_user" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="ibas_tech1.group_ibas_tech1_filter_access_helpdesk_team"/>-->
-        
-        <record id="helpdesk.helpdesk_team_dashboard_action_main" model="ir.actions.act_window">
-        <field name="name">Helpdesk Overview</field>
-        <field name="res_model">helpdesk.team</field>
-        <field name="view_mode">kanban,form</field>
-        <field name="groups_id" eval="[(6,0, [ref('helpdesk.group_helpdesk_manager')])]"/>
-        <field name="context">{}</field>
-        <field name="view_id" ref="helpdesk.helpdesk_team_view_kanban"/>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_empty_folder">
+		</record>
+
+		<!--        <menuitem id="helpdesk_menu_team_dashboard_user" action="ibas_tech1.helpdesk_team_dashboard_action_main_user" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="ibas_tech1.group_ibas_tech1_filter_access_helpdesk_team"/>-->
+
+		<record id="helpdesk.helpdesk_team_dashboard_action_main" model="ir.actions.act_window">
+			<field name="name">Helpdesk Overview</field>
+			<field name="res_model">helpdesk.team</field>
+			<field name="view_mode">kanban,form</field>
+			<field name="groups_id" eval="[(6,0, [ref('helpdesk.group_helpdesk_manager')])]"/>
+			<field name="context">{}</field>
+			<field name="view_id" ref="helpdesk.helpdesk_team_view_kanban"/>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_empty_folder">
                 Your teams will appear here
-            </p>
-        </field>
-    </record>
+				</p>
+			</field>
+		</record>
 
-        <menuitem id="helpdesk.helpdesk_menu_team_dashboard" action="helpdesk.helpdesk_team_dashboard_action_main" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="helpdesk.group_helpdesk_manager"/>
+		<!-- <menuitem id="helpdesk.helpdesk_menu_team_dashboard" action="helpdesk.helpdesk_team_dashboard_action_main" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="helpdesk.group_helpdesk_manager"/> -->
 
 
-	<!-- Dealer -->    
-	<record id="helpdesk_ticket_view_form_dealer" model="ir.ui.view">
+		<!-- Dealer -->
+		<record id="helpdesk_ticket_view_form_dealer" model="ir.ui.view">
 			<field name="name">helpdesk.ticket.form.dealer</field>
 			<field name="model">helpdesk.ticket</field>
 			<field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
 			<field name="groups_id" eval="[(6,0, [ref('ibas_tech1.group_ibas_tech1_dealer')])]"/>
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='user_id']" position="attributes">
-                    <attribute name="readonly">1</attribute> 
-                </xpath>
+					<attribute name="readonly">1</attribute>
+				</xpath>
 				<xpath expr="//field[@name='team_id']" position="attributes">
-                    <attribute name="readonly">1</attribute> 
-                </xpath>
+					<attribute name="readonly">1</attribute>
+				</xpath>
 				<xpath expr="//field[@name='partner_id']" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </xpath>
+					<attribute name="readonly">1</attribute>
+				</xpath>
 				<xpath expr="//field[@name='partner_email']" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </xpath>
+					<attribute name="readonly">1</attribute>
+				</xpath>
 			</field>
-	</record>
+		</record>
 
-	<record id="helpdesk_team_dashboard_action_main_dealer" model="ir.actions.act_window">
+		<record id="helpdesk_team_dashboard_action_main_dealer" model="ir.actions.act_window">
 			<field name="name">Helpdesk Overview</field>
 			<field name="res_model">helpdesk.team</field>
 			<field name="view_mode">kanban,form</field>
 			<field name="domain">[('member_ids.id', '=', uid)]</field>
-            <field name="groups_id" eval="[(6,0, [ref('ibas_tech1.group_ibas_tech1_dealer')])]"/>
+			<field name="groups_id" eval="[(6,0, [ref('ibas_tech1.group_ibas_tech1_dealer')])]"/>
 			<field name="context">{}</field>
 			<field name="view_id" ref="helpdesk.helpdesk_team_view_kanban"/>
 			<field name="help" type="html">
@@ -88,15 +103,15 @@
 					Your teams will appear here
 				</p>
 			</field>
-	</record>
-        
-        <menuitem id="helpdesk_menu_team_dashboard_dealer" action="helpdesk_team_dashboard_action_main_dealer" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="ibas_tech1.group_ibas_tech1_dealer"/>
+		</record>
+
+		<menuitem id="helpdesk_menu_team_dashboard_dealer" action="helpdesk_team_dashboard_action_main_dealer" sequence="5" parent="helpdesk.menu_helpdesk_root" name="Overview" groups="ibas_tech1.group_ibas_tech1_dealer"/>
 
 		<record model="ir.ui.menu" id="helpdesk.menu_helpdesk_root">
-     	 	
-			<field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
-    	</record>
 
-	<!-- Dealer -->  
+			<field name="groups_id" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
+		</record>
+
+		<!-- Dealer -->
 	</data>
 </odoo>
