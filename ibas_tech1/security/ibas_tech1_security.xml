@@ -264,11 +264,11 @@
             <field name="groups_id" eval="[(6, 0, [ref('group_helpdesk_dealer_user'), ref('helpdesk.group_helpdesk_user')])]"/>
         </record>
 
-        <record id="helpdesk_dealer_overview_record_rule" model="ir.rule">
+        <!-- <record id="helpdesk_dealer_overview_record_rule" model="ir.rule">
             <field name="groups" eval="[(4,ref('ibas_tech1.group_ibas_tech1_dealer'))]"/>
             <field name="name">Helpdesk Dealer Overview Record Rule</field>
             <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
             <field name="domain_force">[('alias_id.alias_name', '=', user.login.split('@')[0])]</field>
-        </record>
+        </record> -->
     </data>
 </odoo>
