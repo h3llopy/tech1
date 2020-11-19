@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mail_wizard_invite_inherit">
+            <field name="name">mail.wizard.invite.form.inherited</field>
+            <field name="model">mail.wizard.invite</field>
+            <field name="inherit_id" ref="mail.mail_wizard_invite_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('ibas_tech1.group_ibas_tech1_dealer') ])]"/>
+            <field name="arch" type="xml">
+                <field name="partner_ids" position="replace">
+                    <field name="partner_ids" domain="[('user_id','=',uid)]" widget="many2many_tags_email" placeholder="(Dealer) Add contacts to notify..." context="{'force_email':True, 'show_email':True}" invisible="context.get('mail_invite_follower_channel_only')"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mail_activity_view_form_popup_inherited">
+            <field name="name">mail.activity.view.form.popup.inherited</field>
+            <field name="model">mail.activity</field>
+            <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+            <field name="groups_id" eval="[(6, 0, [ref('ibas_tech1.group_ibas_tech1_dealer') ])]"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
