@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock', 'sale', 'sales_team', 'account', 'web', 'purchase', 'purchase_stock', 'account', 'helpdesk', 'sale_stock', 'sale_management', 'contacts'],
+    'depends': ['base', 'stock', 'sale', 'sales_team', 'account', 'web', 'purchase', 'purchase_stock', 'account', 'helpdesk', 'sale_stock', 'sale_management', 'contacts', 'mail'],
 
     # always loaded
     'data': [
@@ -41,6 +41,7 @@
         'views/account_view.xml',
         # 'views/sale_view.xml',
         'views/res_partner_view.xml',
+        'views/mail.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
         'report/report_deliveryslip.xml',
